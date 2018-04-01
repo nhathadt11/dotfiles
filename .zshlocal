@@ -40,3 +40,6 @@ fch() {
 
 # gitignore.io cli
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+# heroku autocomplete setup
+CLI_ENGINE_AC_ZSH_SETUP_PATH=/home/nhatha/.cache/heroku/completions/zsh_setup && test -f $CLI_ENGINE_AC_ZSH_SETUP_PATH && source $CLI_ENGINE_AC_ZSH_SETUP_PATH;
