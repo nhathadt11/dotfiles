@@ -9,6 +9,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " One dark theme
 Plugin 'rakr/vim-one'
+" NERDTree
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()           " required
@@ -35,3 +37,5 @@ colorscheme one
 set background=dark 				" for the dark version
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+map <C-n> :NERDTreeToggle<CR>
