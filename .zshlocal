@@ -38,6 +38,11 @@ fch() {
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
+# python simple HTTP server
+pssv() {
+  python -m SimpleHTTPServer 8000
+}
+
 # gitignore.io cli
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
