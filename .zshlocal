@@ -53,3 +53,5 @@ HEROKU_AC_ZSH_SETUP_PATH=/home/nhatha/.cache/heroku/autocomplete/zsh_setup && te
 export ANDROID_HOME=$HOME/development/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 
+# Yarn bin
+export PATH="$(yarn global bin):$PATH"
