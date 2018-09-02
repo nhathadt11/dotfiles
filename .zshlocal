@@ -55,3 +55,6 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 
 # Yarn bin
 export PATH="$(yarn global bin):$PATH"
+
+# Rgc
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
