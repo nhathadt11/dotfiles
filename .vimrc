@@ -34,7 +34,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 colorscheme one 
-set background=dark 				" for the dark version
+set background=light " for the dark version
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
