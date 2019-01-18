@@ -57,6 +57,15 @@ function fzp() {
 	fzf --preview 'head -100 {}'
 }
 
+# Git branch checkout with fuzzy
+fbr() {
+  git fetch
+  local branches branch
+  branches=$(git branch -a) &&
+  branch=$(echo "$branches" | fzf +s +m -e) &&
+  git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/home/nhatha/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
