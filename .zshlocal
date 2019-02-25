@@ -48,6 +48,9 @@ fch() {
 pssv() {
   python -m SimpleHTTPServer 8000
 }
+pssv3() {
+	python -m http.server 8000
+}
 
 # gitignore.io cli
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
