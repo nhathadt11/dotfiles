@@ -3,6 +3,8 @@
 alias dockeroff='docker stop $(docker ps -aq)'
 alias dockeron='docker start $(docker ps -aq)'
 alias dockerres='docker restart $(docker ps -aq)'
+alias dockerdel='docker rmi $(docker images -q)'
+alias dockerkill='docker kill $(docker ps -q)'
 
 alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
 local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
