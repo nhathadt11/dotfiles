@@ -72,6 +72,9 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# specialized configs for WSL
+ZSH_DISABLE_COMPFIX=true
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -104,3 +107,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 [[ -s "$HOME/.zshlocal" ]] && source "$HOME/.zshlocal"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
