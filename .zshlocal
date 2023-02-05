@@ -108,3 +108,6 @@ eval "$(rbenv init -)"
 
 # grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+# anaconda
+export PATH="/usr/local/anaconda3/bin:$PATH"
