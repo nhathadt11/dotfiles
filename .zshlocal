@@ -131,3 +131,9 @@ alias java17='export JAVA_HOME=$JAVA_17_HOME'
 alias java18='export JAVA_HOME=$JAVA_18_HOME'
 alias java19='export JAVA_HOME=$JAVA_19_HOME'
 alias java21='export JAVA_HOME=$JAVA_21_HOME'
+
+# Huggingface
+export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
+
+# Obsidian
+export OBSIDIAN_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
