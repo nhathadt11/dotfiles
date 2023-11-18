@@ -72,7 +72,7 @@ fbr() {
 }
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/home/nhatha/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # Android Home
 export ANDROID_HOME=$HOME/development/Android/sdk
@@ -137,3 +137,11 @@ export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
 
 # Obsidian
 export OBSIDIAN_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
+
+# ncdu
+alias ncdu='ncdu --color off'
+
+# lower
+lower() {
+  echo "$@" | tr '[:upper:]' '[:lower:]'
+}

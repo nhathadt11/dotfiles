@@ -4,5 +4,5 @@
 [core]
 	editor = 'vim'
 [merge]
-  tool = kdiff3
+	tool = kdiff3
 
