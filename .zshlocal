@@ -156,8 +156,13 @@ kpp() {
 
   if [ -n "$pid" ]; then
       echo "Process running on port $@ with PID: $pid. Terminating..."
-      kill $pid
+      kill -9 $pid
   else
       echo "No process found running on port $@."
   fi
+}
+
+# show cert
+showcert() {
+  openssl s_client -showcerts -connect "$@":443 -servername $@
 }
