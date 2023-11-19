@@ -162,7 +162,12 @@ kpp() {
   fi
 }
 
-# show cert
+# showcert
 showcert() {
   openssl s_client -showcerts -connect "$@":443 -servername $@
+}
+
+# fzfc to preview file
+fzfc() {
+  fzf --preview 'bat --color=always {} --theme="Coldark-Cold"' --preview-window '~3'
 }
