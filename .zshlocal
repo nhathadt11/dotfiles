@@ -106,6 +106,9 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
@@ -144,4 +147,17 @@ alias ncdu='ncdu --color off'
 # lower
 lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
+}
+
+# kpp
+kpp() {
+  # Kill process associated with a specific port
+  pid=$(lsof -t -i:$@)
+
+  if [ -n "$pid" ]; then
+      echo "Process running on port $@ with PID: $pid. Terminating..."
+      kill $pid
+  else
+      echo "No process found running on port $@."
+  fi
 }
