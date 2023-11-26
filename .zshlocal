@@ -171,3 +171,21 @@ showcert() {
 fzfc() {
   fzf --preview 'bat --color=always {} --theme="Coldark-Cold"' --preview-window '~3'
 }
+
+# empty notebook
+newnb() {
+  if [ -z "$@" ]; then
+    notebook_name="Untitled"
+  else
+    notebook_name="$@"
+  fi
+
+  cat > "$notebook_name.ipynb" <<EOF
+{
+  "cells": [],
+  "metadata": {},
+  "nbformat": 4,
+  "nbformat_minor": 2
+}
+EOF
+}
