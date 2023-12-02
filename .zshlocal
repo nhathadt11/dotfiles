@@ -211,3 +211,14 @@ newnb() {
 }
 EOF
 }
+
+# see diff from head~n
+gdh () {
+  if [ -z "$@" ]; then
+    head=1
+  else
+    head="$@"
+  fi
+
+  git diff HEAD~$@..HEAD
+}
