@@ -141,9 +141,6 @@ export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
 # Obsidian
 export OBSIDIAN_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 
-# ncdu
-alias ncdu='ncdu --color off'
-
 # lower
 lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
@@ -213,7 +210,7 @@ EOF
 }
 
 # see diff from head~n
-gdh () {
+gdh() {
   if [ -z "$@" ]; then
     head=1
   else
@@ -221,4 +218,13 @@ gdh () {
   fi
 
   git diff HEAD~$@..HEAD
+}
+
+# ncdu by default, du as fallback
+duh() {
+  if command -v ncdu; then
+    ncdu --color off
+  else
+    du -sh * | sort -hr
+  fi
 }
