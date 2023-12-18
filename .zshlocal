@@ -222,3 +222,20 @@ duh() {
     du -sh * | sort -hr
   fi
 }
+
+# automatically commit all and push
+acp() {
+  if [ -z "$(git status --porcelain)" ]; then
+    echo "Nothing to commit, boy!"
+    return 0
+  fi
+
+  if [ -z "$@" ]; then
+    echo "Missing commit message, boy!"
+    return 0
+  fi
+
+  git add .
+  git commit -m "$@"
+  git push
+}
