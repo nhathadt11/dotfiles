@@ -121,19 +121,34 @@ bindkey '^X' create_completion
 # java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
-export JAVA_18_HOME=$(/usr/libexec/java_home -v18)
-export JAVA_19_HOME=$(/usr/libexec/java_home -v19)
-export JAVA_21_HOME=$(/usr/libexec/java_home -v21)
+usejava() {
+  versions=("1.8" "11" "16" "21")
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
-alias java17='export JAVA_HOME=$JAVA_17_HOME'
-alias java18='export JAVA_HOME=$JAVA_18_HOME'
-alias java19='export JAVA_HOME=$JAVA_19_HOME'
-alias java21='export JAVA_HOME=$JAVA_21_HOME'
+  if [ -z "$@" ]; then
+    echo "No version selected"
+    return 0
+  fi
+
+  if [ 21 = $@ ]; then # from OpenJDK
+    export JAVA_HOME="/opt/homebrew/opt/openjdk"
+    export PATH="$JAVA_HOME/bin:$PATH"
+    echo "Set JAVA_HOME=$JAVA_HOME"
+    echo $(java -version)
+    return 0
+  fi
+
+  for v in ${versions[*]}; do
+    if [ $v = $@ ]; then # from AdoptOpenJDK
+      export JAVA_HOME=$(/usr/libexec/java_home -v$@)
+      export PATH="$JAVA_HOME/bin:$PATH"
+      echo "Set JAVA_HOME=$JAVA_HOME"
+      echo $(java -version)
+      return 0
+    fi
+  done
+
+  echo "Unsupported java version $@. See $(declare -p versions)"
+}
 
 # Huggingface
 export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
