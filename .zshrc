@@ -67,6 +67,7 @@ plugins=(
   yarn
   node
   npm
+  poetry
   extract
   zsh-autosuggestions
   zsh-syntax-highlighting
