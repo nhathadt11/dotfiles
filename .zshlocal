@@ -250,7 +250,17 @@ acp() {
     return 0
   fi
 
-  git add .
-  git commit -m "$@"
-  git push
+  msg=$@
+  cmd='git add .; git commit -m "$msg"; git push;'
+
+  withPrompt $cmd
+}
+
+withPrompt() {
+  printf 'Are you sure (y/n)? '
+  read answer
+
+  if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    eval "$@"
+  fi
 }
