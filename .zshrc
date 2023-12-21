@@ -69,6 +69,7 @@ plugins=(
   npm
   poetry
   extract
+  git-flow-completion
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh_codex
