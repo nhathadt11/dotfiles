@@ -69,6 +69,7 @@ plugins=(
   npm
   poetry
   extract
+  terraform
   git-flow-completion
   zsh-autosuggestions
   zsh-syntax-highlighting

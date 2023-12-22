@@ -158,6 +158,10 @@ export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
 # Obsidian
 export OBSIDIAN_PATH="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 
+# Terraform
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C $(which terraform) terraform
+
 # lower
 lower() {
   echo "$@" | tr '[:upper:]' '[:lower:]'
