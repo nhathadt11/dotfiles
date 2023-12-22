@@ -55,7 +55,9 @@ pssv3() {
 }
 
 # gitignore.io cli
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+function gi() {
+  curl -L -s https://www.gitignore.io/api/$@ >> .gitignore
+}
 
 # file preview
 function fzp() {
