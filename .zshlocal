@@ -10,6 +10,16 @@ alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bo
 local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always %'"
 
+# use with care
+__with_prompt() {
+  printf 'Are you sure (y/n)? '
+  read answer
+
+  if [ "$answer" != "${answer#[Yy]}" ] ;then
+    eval "$@"
+  fi
+}
+
 # fshow_preview - git commit browser with previews
 fgpshow() {
   glNoGraph |
@@ -259,14 +269,20 @@ acp() {
   msg=$@
   cmd='git add .; git commit -m "$msg"; git push;'
 
-  withPrompt $cmd
+  __with_prompt $cmd
 }
 
-withPrompt() {
-  printf 'Are you sure (y/n)? '
-  read answer
+# backup
+bak() {
+  if test -f "$@"; then
+    file=$@
 
-  if [ "$answer" != "${answer#[Yy]}" ] ;then 
-    eval "$@"
+    extension="${file##*.}"
+    filename="${file%.*}"
+    now=$(date +"%Y-%m-%d-%H-%M-%S")
+
+    cp $file $filename-$now.$extension
+  else
+    echo "File not found."
   fi
 }
