@@ -286,3 +286,18 @@ bak() {
     echo "File not found."
   fi
 }
+
+# ip, localip, ipif
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+
+ipif() {
+  if [ -z $@ ]; then ip=$(ip) else ip=$@ fi
+
+  if grep "(([1-9]\d{0,2})\.){3}(?2)" <<< "$ip"; then
+    curl ipinfo.io/"$ip"
+  else
+    ipawk=($(host "$ip" | awk '/address/ { print $NF }'))
+    curl ipinfo.io/${ipawk[1]}
+  fi
+}
