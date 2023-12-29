@@ -301,3 +301,40 @@ ipif() {
     curl ipinfo.io/${ipawk[1]}
   fi
 }
+
+# some useful py commands
+usepy() {
+  cmds=(
+    "conda info --envs"
+    "conda create env"
+    "conda create --file requirements.txt --prefix ./env"
+    "conda create --name <env> python=3.9.1"
+    "conda activate ./env"
+    "conda deactivate"
+    "conda clean --all --tarballs"
+    "conda update --all"
+    "conda update -n base -c defaults conda"
+    "conda env create -f environment.yml --prefix ./env"
+    "conda env export > environment.yml"
+    "conda env export --no-builds > environment.yml"
+    "conda config --add channels <channel>"
+    "conda install <pkg> -c conda-forge"
+    "pip freeze > requirements.txt"
+    "pip install -r requirements.txt"
+    "python -m ipykernel install --user --name=<kernel>"
+    "pipx run pipreqs ."
+    "pipx run jupyter lab"
+    "pipx run jupyter notebook"
+  )
+
+  print -z $(printf '%s\n' "${cmds[@]}" | fzf +s --tac)
+}
+
+# export all packages used in ./*.ipynb to requirements.txt file
+genreqs() {
+  tmp=tmp-$(date +"%Y-%m-%d-%H-%M-%S")
+  mkdir $tmp
+  pipx run jupyter nbconvert --to python --output-dir=$tmp *.ipynb
+  pipx run pipreqs $tmp --savepath=requirements.txt
+  rm -rf $tmp
+}
