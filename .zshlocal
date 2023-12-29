@@ -325,6 +325,7 @@ usepy() {
     "pipx run pipreqs ."
     "pipx run jupyter lab"
     "pipx run jupyter notebook"
+    "poetry add \$(sed 's/#.*//' requirements.txt)"
   )
 
   print -z $(printf '%s\n' "${cmds[@]}" | fzf +s --tac)
