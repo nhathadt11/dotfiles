@@ -32,8 +32,11 @@ fgpshow() {
 
 # fh - repeat history
 fh() {
-   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
+
+# atuin
+eval "$(atuin init zsh)"
 
 # c - browse chrome history
 fch() {
@@ -65,13 +68,17 @@ pssv3() {
 }
 
 # gitignore.io cli
-function gi() {
+gi() {
   curl -L -s https://www.gitignore.io/api/$@ >> .gitignore
 }
 
 # file preview
-function fzp() {
-	fzf --preview 'head -100 {}'
+fzp() {
+  if command -v bat; then
+    fzf --preview 'bat --color=always {} --theme="Coldark-Cold"' --preview-window '~3'
+  else
+    fzf --preview 'head -100 {}'
+  fi
 }
 
 # Git branch checkout with fuzzy
@@ -193,11 +200,6 @@ kpp() {
 # showcert
 showcert() {
   openssl s_client -showcerts -connect "$@":443 -servername $@
-}
-
-# fzfc to preview file
-fzfc() {
-  fzf --preview 'bat --color=always {} --theme="Coldark-Cold"' --preview-window '~3'
 }
 
 # new notebook
