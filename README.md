@@ -2,7 +2,7 @@
 
 ```bash
 syncdotfiles() {
-  dotfiles=(gitconfig gitlocal zshrc zshlocal)
+  dotfiles=(gitconfig gitlocal zshrc zshlocal ssh/config)
 
   for f in ${dotfiles[*]}; do
     if test -f "$HOME/.$f"; then
