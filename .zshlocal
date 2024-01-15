@@ -249,10 +249,12 @@ gdh() {
 
 # ncdu by default, du as fallback
 duh() {
+  if [ -z "$@" ]; then dir=. else dir=$@ fi
+
   if command -v ncdu; then
-    ncdu --color off
+    ncdu --color off $dir
   else
-    du -sh * | sort -hr
+    du -sh $dir/* $dir/.* | sort -hr
   fi
 }
 
