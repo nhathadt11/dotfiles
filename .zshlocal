@@ -343,3 +343,5 @@ genreqs() {
   pipx run pipreqs $tmp --savepath=requirements.txt
   rm -rf $tmp
 }
+
+alias whoisfat="open -a GrandPerspective"
