@@ -344,4 +344,4 @@ genreqs() {
   rm -rf $tmp
 }
 
-alias whoisfat="open -a GrandPerspective"
+alias whoisfat="open -a GrandPerspective /"
