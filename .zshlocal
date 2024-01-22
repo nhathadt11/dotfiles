@@ -344,4 +344,15 @@ genreqs() {
   rm -rf $tmp
 }
 
+# whoisfat to detect big files
 alias whoisfat="open -a GrandPerspective /"
+
+# copy absolute path of a file or directory in working directory to clipboard
+abp() {
+  if test -f "$@"; then
+    echo "$(pwd)/$@" | pbcopy
+    echo "Copied to clipboard: $(pwd)/$@"
+  else
+    echo "File not found."
+  fi
+}
