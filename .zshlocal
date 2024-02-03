@@ -10,6 +10,8 @@ alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bo
 local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always %'"
 
+export PATH="$PATH:$HOME/.local/bin"
+
 # use with care
 __with_prompt() {
   printf 'Are you sure (y/n)? '
@@ -335,11 +337,11 @@ usepy() {
   print -z $(printf '%s\n' "${cmds[@]}" | fzf +s --tac)
 }
 
-# export all packages used in ./*.ipynb to requirements.txt file
+# export all packages used in **/*.ipynb to requirements.txt file
 genreqs() {
   tmp=tmp-$(date +"%Y-%m-%d-%H-%M-%S")
   mkdir $tmp
-  pipx run jupyter nbconvert --to python --output-dir=$tmp *.ipynb
+  pipx run jupyter nbconvert --to python --output-dir=$tmp **/*.ipynb
   pipx run pipreqs $tmp --savepath=requirements.txt
   rm -rf $tmp
 }
