@@ -142,34 +142,8 @@ bindkey '^X' create_completion
 # java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-usejava() {
-  versions=("1.8" "11" "16" "21")
-
-  if [ -z "$@" ]; then
-    echo "No version selected"
-    return 0
-  fi
-
-  if [ 21 = $@ ]; then # from OpenJDK
-    export JAVA_HOME="/opt/homebrew/opt/openjdk"
-    export PATH="$JAVA_HOME/bin:$PATH"
-    echo "Set JAVA_HOME=$JAVA_HOME"
-    echo $(java -version)
-    return 0
-  fi
-
-  for v in ${versions[*]}; do
-    if [ $v = $@ ]; then # from AdoptOpenJDK
-      export JAVA_HOME=$(/usr/libexec/java_home -v$@)
-      export PATH="$JAVA_HOME/bin:$PATH"
-      echo "Set JAVA_HOME=$JAVA_HOME"
-      echo $(java -version)
-      return 0
-    fi
-  done
-
-  echo "Unsupported java version $@. See $(declare -p versions)"
-}
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Huggingface
 export TRANSFORMER_CACHE=$HOME/.cache/huggingface/hub
