@@ -96,8 +96,16 @@ fbr() {
 HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # Android Home
-export ANDROID_HOME=$HOME/development/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH="$ANDROID_HOME/cmdline-tools/19.0/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
+# gradle
+export GRADLE_HOME="$HOME/.gradle/wrapper/dists/gradle-9.1.0"
+export PATH="$PATH:$GRADLE_HOME/bin"
+
+# Python user-based binary path
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # Yarn bin
 export PATH="$(yarn global bin):$PATH"
@@ -233,7 +241,7 @@ duh() {
   if command -v ncdu; then
     ncdu --color off $dir
   else
-    du -sh $dir/* $dir/.* | sort -hr
+    du -sh $dir/**/.[^.]* $dir/**/* | sort -hr
   fi
 }
 
