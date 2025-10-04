@@ -343,3 +343,9 @@ abp() {
     echo "File not found."
   fi
 }
+
+# https://github.com/alexzielenski/optool
+export PATH="$HOME/dev/optool/build/Products/Release:$PATH"
+
+# https://github.com/Tyilo/insert_dylib
+export PATH="$HOME/dev/insert_dylib/build/Release:$PATH"
